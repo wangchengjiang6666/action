@@ -5,20 +5,30 @@ function showError(message, show = true) {
   show &&
     Taro.showToast({
       title: message || "请求异常",
-      icon: "none"
+      icon: "none",
     });
   return Promise.reject(message);
 }
-const customInterceptor = function(chain) {
+const customInterceptor = function (chain) {
   const requestParams = chain.requestParams;
   const { showToast } = requestParams;
+  //   alert(123);
+  //   let path = getCurrentPageUrl();
+  //   let token = Taro.getStorageSync("token");
+  //   console.log("55", token);
+  //   if (path !== "pages/login/index" || !token) {
+  //     Taro.navigateTo({
+  //       url: "/pages/login/index",
+  //     });
+  //   }
   return chain
     .proceed(requestParams)
-    .catch(res => {
+    .catch((res) => {
       // 这个catch需要放到前面才能捕获request本身的错误，因为showError返回的也是Promise.reject
       return showError(res.errMsg, showToast);
     })
-    .then(res => {
+    .then((res) => {
+      console.log("55555", res);
       // 只要请求成功，不管返回什么状态码，都走这个回调
       if (res.statusCode === HTTP_STATUS.NOT_FOUND) {
         return showError("请求资源不存在", showToast);
@@ -29,7 +39,7 @@ const customInterceptor = function(chain) {
         let path = getCurrentPageUrl();
         if (path !== "pages/login/login") {
           Taro.navigateTo({
-            url: "/pages/login/login"
+            url: "/pages/login/login",
           });
         } // TODO 根据自身业务修改
         return showError("没有权限访问", showToast);
@@ -38,7 +48,7 @@ const customInterceptor = function(chain) {
         let path = getCurrentPageUrl();
         if (path !== "pages/login/login") {
           Taro.navigateTo({
-            url: "/pages/login/login"
+            url: "/pages/login/login",
           });
         }
         return showError("需要鉴权", showToast);

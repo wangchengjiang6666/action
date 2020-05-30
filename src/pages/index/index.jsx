@@ -24,39 +24,22 @@ import "./index.scss";
 )
 class Index extends Component {
   config = {
-    navigationBarTitleText: "首页"
+    navigationBarBackgroundColor:'#333333'
+    }
   };
 
-  componentWillReceiveProps(nextProps) {
-    console.log(this.props, nextProps);
-  }
-
-  componentWillUnmount() {}
+  componentDidMount() {}
 
   componentDidShow() {}
 
   componentDidHide() {}
 
+  componentDidCatchError() {}
+
+  // 在 App 类中的 render() 函数没有实际作用
+  // 请勿修改此函数
   render() {
-    return (
-      <View className="index">
-        <Button className="add_btn" onClick={this.props.add}>
-          +
-        </Button>
-        <Button className="dec_btn" onClick={this.props.dec}>
-          -
-        </Button>
-        <Button className="dec_btn" onClick={this.props.asyncAdd}>
-          async
-        </Button>
-        <View>
-          <Text>{this.props.counter.num}</Text>
-        </View>
-        <View>
-          <Text>Hello, World</Text>
-        </View>
-      </View>
-    );
+    return <div>首页</div>;
   }
 }
 
