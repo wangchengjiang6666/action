@@ -1,0 +1,41 @@
+@import "~taro-ui/dist/style/components/tabs.scss";
+.loginContent {
+  .loginLogo {
+    width: 92.15px;
+    height: 91.26px;
+    img {
+      width: 100%;
+    }
+    margin-top: 93px;
+    margin-left: 140px;
+  }
+  .loginMian {
+    margin-top: 80px;
+    padding: 0 20px;
+    box-sizing: border-box;
+    .at-tabs__header {
+      height: 30px;
+      width: 150px;
+      .at-tabs__item {
+        padding: 0;
+        font-size: 14px;
+        .at-tabs__item-underline {
+          width: 30%;
+          margin-left: 35%;
+          height: 2px;
+        }
+      }
+    }
+    .at-tabs__body {
+      margin-top: 10px;
+      .at-tabs__underline {
+        display: none;
+      }
+      .at-tabs-pane {
+        > div {
+          background-color: #fff !important;
+        }
+      }
+    }
+  }
+}

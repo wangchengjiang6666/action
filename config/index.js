@@ -2,8 +2,15 @@ const path = require("path");
 const config = {
   projectName: "library",
   date: "2020-4-10",
-  designWidth: 750,
+  //   designWidth: 750,
+  //   deviceRatio: {
+  //     "640": 2.34 / 2,
+  //     "750": 1,
+  //     "828": 1.81 / 2
+  //   },
+  designWidth: 375,
   deviceRatio: {
+    "375": 1 / 2,
     "640": 2.34 / 2,
     "750": 1,
     "828": 1.81 / 2
