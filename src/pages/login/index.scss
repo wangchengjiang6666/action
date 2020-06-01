@@ -1,5 +1,16 @@
 @import "~taro-ui/dist/style/components/tabs.scss";
+.taro_page {
+  display: flex;
+  flex-direction: column;
+  > div {
+    flex: 1;
+  }
+}
 .loginContent {
+  .toast-body-content__info {
+    font-size: 12px;
+  }
+  background: #e8e8e8;
   .loginLogo {
     width: 92.15px;
     height: 91.26px;
@@ -16,6 +27,7 @@
     .at-tabs__header {
       height: 30px;
       width: 150px;
+      background: #e8e8e8;
       .at-tabs__item {
         padding: 0;
         font-size: 14px;
@@ -33,9 +45,58 @@
       }
       .at-tabs-pane {
         > div {
-          background-color: #fff !important;
+          //background-color: #fff !important;
+          // border-radius: 5px;
         }
       }
+    }
+    .phoneInput {
+      display: flex;
+      height: 50px;
+      background-color: #fff !important;
+      align-items: center;
+      border-radius: 5px;
+      .phoneTitle {
+        text-align: center;
+        width: 80px;
+        height: 100%;
+        line-height: 50px;
+        border-right: 1px solid #eeeeee;
+        font-size: 12px;
+      }
+      .at-input {
+        padding: 0;
+        margin-left: 10px;
+        flex: 1;
+        border-radius: 5px;
+        input {
+          font-size: 12px !important;
+          padding: 0;
+        }
+      }
+    }
+    .passwordInput {
+      margin-top: 10px;
+      .at-input {
+        padding: 0;
+        margin-left: 0px;
+        flex: 1;
+        border-radius: 5px;
+        input {
+          font-size: 12px !important;
+          padding: 10px;
+          box-sizing: border-box;
+        }
+      }
+    }
+    .login {
+      color: #fff;
+      background: blue;
+      margin-top: 20px;
+      border: none;
+      height: 40px;
+      line-height: 40px;
+      font-size: 14px;
     }
   }
 }
