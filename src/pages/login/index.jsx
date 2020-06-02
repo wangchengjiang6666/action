@@ -1,5 +1,7 @@
 import Taro, { Component } from "@tarojs/taro";
-import { View, Text } from "@tarojs/components";
+import { View, Text, Picker } from "@tarojs/components";
+import { AtList, AtListItem } from "taro-ui";
+import { check_phone } from "../common/reg";
 import "./index.scss";
 import {
   AtTabs,
@@ -9,9 +11,6 @@ import {
   AtButton,
   AtToast
 } from "taro-ui";
-function check_phone(phoneNum) {
-  return /^1[3456789]\d{9}$/.test(phoneNum); //true
-}
 class Index extends Component {
   config = {
     navigationBarTitleText: "登录"
@@ -21,7 +20,9 @@ class Index extends Component {
     phone: "",
     password: "",
     showToast: false, //轻提示
-    text: "" //提示内容
+    text: "", //提示内容
+    selector: ["美国", "中国", "巴西", "日本"],
+    selectorChecked: "美国"
   };
   handleClick(value) {
     this.setState({
@@ -63,6 +64,12 @@ class Index extends Component {
       text: "" //提示内容
     });
   };
+  //选择地区
+  onChangeArea = e => {
+    this.setState({
+      selectorChecked: this.state.selector[e.detail.value]
+    });
+  };
   componentWillReceiveProps(nextProps) {
     console.log(this.props, nextProps);
   }
@@ -90,7 +97,21 @@ class Index extends Component {
             <AtTabsPane current={this.state.current} index={0}>
               <View>
                 <View className="phoneInput">
-                  <View className="phoneTitle">86+</View>
+                  {/*  <View className="container">
+                    <View className="page-body">
+                      <View className="page-section" */}
+                  <View>
+                    <Picker
+                      mode="selector"
+                      range={this.state.selector}
+                      onChange={this.onChangeArea}
+                    >
+                      <View className="phoneTitle">86+</View>
+                    </Picker>
+                    {/*  </View>
+                      </View>
+                    </View> */}
+                  </View>
                   <AtInput
                     name="value6"
                     border={false}
