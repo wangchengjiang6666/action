@@ -20,6 +20,7 @@ class App extends Component {
     pages: [
       "pages/login/index",
       "pages/index/index",
+
       "pages/price/index",
       "pages/market/index",
       "pages/home/index",
@@ -36,31 +37,31 @@ class App extends Component {
     tabBar: {
       list: [
         {
-          pagePath: "pages/index/index",
+          pagePath: "/pages/index/index",
           text: "首页",
           iconPath: "./assets/tab_home.png",
           selectedIconPath: "./assets/tab_home_f.png"
         },
         {
-          pagePath: "pages/price/index",
+          pagePath: "/pages/price/index",
           text: "行情",
           iconPath: "./assets/tab_me.png",
           selectedIconPath: "./assets/tab_me_f.png"
         },
         {
-          pagePath: "pages/market/index",
+          pagePath: "/pages/market/index",
           text: "市场",
           iconPath: "./assets/tab_me.png",
           selectedIconPath: "./assets/tab_me_f.png"
         },
         {
-          pagePath: "pages/found/index",
+          pagePath: "/pages/found/index",
           text: "发现",
           iconPath: "./assets/tab_me.png",
           selectedIconPath: "./assets/tab_me_f.png"
         },
         {
-          pagePath: "pages/mine/index",
+          pagePath: "/pages/mine/index",
           text: "我的",
           iconPath: "./assets/tab_me.png",
           selectedIconPath: "./assets/tab_me_f.png"

@@ -1,7 +1,7 @@
 import Taro, { Component } from "@tarojs/taro";
 import { View, Button, Text } from "@tarojs/components";
 import { connect } from "@tarojs/redux";
-
+import API from "../../service/api";
 import { add, minus, asyncAdd } from "../../store/counter/action";
 
 import "./index.scss";
@@ -28,7 +28,17 @@ class Index extends Component {
   //     }
   //   }
 
-  componentDidMount() {}
+  componentDidMount() {
+    let result = await API.post(
+      "/reset/login",
+      {
+        username: '112',
+        password: '1'
+      },
+      "application/x-www-form-urlencoded"
+    );
+    console.log(result)
+  }
 
   componentDidShow() {}
 
