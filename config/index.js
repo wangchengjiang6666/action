@@ -97,6 +97,17 @@ const config = {
           generateScopedName: "[name]__[local]___[hash:base64:5]"
         }
       }
+    },
+    devServer: {
+      host: "localhost",
+      port: 10086,
+      proxy: {
+        "/reset": {
+          target: "http://119.8.127.28:9091/",
+          changeOrigin: true,
+          pathRewrite: { "^/reset": "" }
+        }
+      }
     }
   }
 };

@@ -2,6 +2,7 @@ import Taro, { Component } from "@tarojs/taro";
 import { View, Text, Picker } from "@tarojs/components";
 import { AtList, AtListItem } from "taro-ui";
 import { check_phone } from "../common/reg";
+import API from "../../service/api";
 import "./index.scss";
 import {
   AtTabs,
@@ -19,14 +20,17 @@ class Index extends Component {
     current: 0,
     phone: "",
     password: "",
+    email: "",
+
     showToast: false, //轻提示
     text: "", //提示内容
     selector: ["美国", "中国", "巴西", "日本"],
-    selectorChecked: "美国"
+    selectorChecked: "中国"
   };
   handleClick(value) {
     this.setState({
-      current: value
+      current: value,
+      password: ""
     });
   }
   handleChangePhone = value => {
@@ -39,17 +43,32 @@ class Index extends Component {
       password: value
     });
   };
-  handelLogin = () => {
+  handelLogin = async () => {
     let isAbled = check_phone(this.state.phone);
     if (this.state.phone) {
-      if (isAbled) {
-        //输入格式不正确的情况
-      } else {
+      /*  if (isAbled) { */
+      let result = await API.post(
+        "/reset/login",
+        {
+          username: this.state.phone,
+          password: this.state.password
+        },
+        "application/x-www-form-urlencoded"
+      );
+      console.log("888", result);
+      if (result.code == 1) {
+        Taro.setStorageSync("token", result.data[0].token);
+        Taro.navigateTo({
+          url: "/pages/index/index"
+        });
+      }
+
+      /*  } else {//输入格式不正确的情况
         this.setState({
           showToast: true,
           text: "手机格式不正确"
         });
-      }
+      } */
     } else {
       //输入为空的情况
       this.setState({
@@ -69,6 +88,11 @@ class Index extends Component {
     this.setState({
       selectorChecked: this.state.selector[e.detail.value]
     });
+  };
+  //触发弹窗
+  showPicker = () => {
+    let ref = document.getElementById("phoneStart");
+    ref.children[0].children[0].click();
   };
   componentWillReceiveProps(nextProps) {
     console.log(this.props, nextProps);
@@ -97,20 +121,10 @@ class Index extends Component {
             <AtTabsPane current={this.state.current} index={0}>
               <View>
                 <View className="phoneInput">
-                  {/*  <View className="container">
-                    <View className="page-body">
-                      <View className="page-section" */}
                   <View>
-                    <Picker
-                      mode="selector"
-                      range={this.state.selector}
-                      onChange={this.onChangeArea}
-                    >
-                      <View className="phoneTitle">86+</View>
-                    </Picker>
-                    {/*  </View>
-                      </View>
-                    </View> */}
+                    <View className="phoneTitle" onClick={this.showPicker}>
+                      86+
+                    </View>
                   </View>
                   <AtInput
                     name="value6"
@@ -143,7 +157,7 @@ class Index extends Component {
                     border={false}
                     type="phone"
                     placeholder="请输入邮箱"
-                    value={this.state.phone}
+                    value={this.state.email}
                     onChange={this.handleChangePhone}
                   />
                 </View>
@@ -160,6 +174,14 @@ class Index extends Component {
               </View>
             </AtTabsPane>
           </AtTabs>
+        </View>
+        <View id="phoneStart">
+          <Picker
+            mode="selector"
+            range={this.state.selector}
+            onChange={this.onChangeArea}
+            value={1}
+          ></Picker>
         </View>
         <AtToast
           isOpened={this.state.showToast}

@@ -19,10 +19,12 @@ class App extends Component {
   config = {
     pages: [
       "pages/login/index",
-      "pages/test/index",
-
-      "pages/home/index",
       "pages/index/index",
+      "pages/price/index",
+      "pages/market/index",
+      "pages/home/index",
+      "pages/found/index",
+      "pages/mine/index",
       "pages/search/index"
     ],
     window: {
@@ -30,27 +32,45 @@ class App extends Component {
       navigationBarBackgroundColor: "#fff",
       navigationBarTitleText: "WeChat",
       navigationBarTextStyle: "black"
+    },
+    tabBar: {
+      list: [
+        {
+          pagePath: "pages/index/index",
+          text: "首页",
+          iconPath: "./assets/tab_home.png",
+          selectedIconPath: "./assets/tab_home_f.png"
+        },
+        {
+          pagePath: "pages/price/index",
+          text: "行情",
+          iconPath: "./assets/tab_me.png",
+          selectedIconPath: "./assets/tab_me_f.png"
+        },
+        {
+          pagePath: "pages/market/index",
+          text: "市场",
+          iconPath: "./assets/tab_me.png",
+          selectedIconPath: "./assets/tab_me_f.png"
+        },
+        {
+          pagePath: "pages/found/index",
+          text: "发现",
+          iconPath: "./assets/tab_me.png",
+          selectedIconPath: "./assets/tab_me_f.png"
+        },
+        {
+          pagePath: "pages/mine/index",
+          text: "我的",
+          iconPath: "./assets/tab_me.png",
+          selectedIconPath: "./assets/tab_me_f.png"
+        }
+      ],
+      color: "#a6a6a6",
+      selectedColor: "#78a4fa",
+      backgroundColor: "#ffffff",
+      borderStyle: "black"
     }
-    // tabBar: {
-    //   list: [
-    //     {
-    //       pagePath: "pages/index/index",
-    //       text: "首页",
-    //       iconPath: "./assets/tab_home.png",
-    //       selectedIconPath: "./assets/tab_home_f.png"
-    //     },
-    //     {
-    //       pagePath: "pages/index/index",
-    //       text: "测试",
-    //       iconPath: "./assets/tab_me.png",
-    //       selectedIconPath: "./assets/tab_me_f.png"
-    //     }
-    //   ],
-    //   color: "#a6a6a6",
-    //   selectedColor: "#78a4fa",
-    //   backgroundColor: "#ffffff",
-    //   borderStyle: "black"
-    // }
   };
 
   componentDidMount() {}
